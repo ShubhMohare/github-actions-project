@@ -146,5 +146,5 @@ git push origin main
 
 ## Screenshots
 
-![Home Page](screenshots/home.png)
+![Home](screenshots/home.png)
 
