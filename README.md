@@ -146,5 +146,15 @@ git push origin main
 
 ## Screenshots
 
-![Home](screenshots/home.png)
+### Project Output
+![Project Output](screenshots/Project-Output.png)
+
+### Deployment
+![Deployment](screenshots/Project-Output-2.png)
+
+### Tomcat Working
+![Tomcat](screenshots/Tomcat%20Working.png)
+
+### EC2 Instance
+![EC2](screenshots/Ec2-instance.png)
 
