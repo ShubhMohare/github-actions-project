@@ -19,6 +19,21 @@ This project demonstrates CI/CD deployment of a Java application using GitHub Ac
 
 Code Push → GitHub → Build → Generate WAR → Deploy to Tomcat
 
+## GitHub Secrets
+
+```text
+TOMCAT_HOST
+TOMCAT_USER
+TOMCAT_PASSWORD
+```
+
+## Run
+
+```bash
+git add .
+git commit -m "Update project"
+git push origin main
+```
 ## Project Structure
 
 ```text
@@ -127,23 +142,6 @@ Code Push → GitHub → Build → Generate WAR → Deploy to Tomcat
                             └── CalculatorTest.java
 
 ```
-
-## GitHub Secrets
-
-```text
-TOMCAT_HOST
-TOMCAT_USER
-TOMCAT_PASSWORD
-```
-
-## Run
-
-```bash
-git add .
-git commit -m "Update project"
-git push origin main
-```
-
 ## Screenshots
 
 ### Project Output
