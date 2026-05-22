@@ -6,10 +6,13 @@ on:
       - main
 
 jobs:
+
   build:
+
     runs-on: [self-hosted, linux]
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v5
 
@@ -23,17 +26,28 @@ jobs:
       - name: Build WAR
         run: mvn clean package -DskipTests
 
+      - name: SonarQube Scan
+        run: |
+          mvn sonar:sonar \
+          -Dsonar.projectKey=myapp \
+          -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
       - name: Upload WAR
         uses: actions/upload-artifact@v4
         with:
           name: myapp
           path: target/*.war
 
+
   deploy:
+
     needs: build
-    runs-on: ubuntu-latest
+
+    runs-on: [self-hosted, linux]
 
     steps:
+
       - name: Download WAR
         uses: actions/download-artifact@v4
         with:
@@ -44,6 +58,10 @@ jobs:
           WAR_FILE=$(find . -name "*.war" | head -1)
 
           curl -v \
-            -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
-            --upload-file "$WAR_FILE" \
-            "http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/myapp&update=true"
+          -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
+          --upload-file "$WAR_FILE" \
+          "http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/myapp&update=true"
+
+      - name: Verify Deployment
+        run: |
+          curl -I http://${{ secrets.TOMCAT_HOST }}:8080/myapp
