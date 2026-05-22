@@ -144,7 +144,7 @@ git commit -m "Update project"
 git push origin main
 ```
 
-## Author
+## Screenshots
 
-Shubh Mohare
+![Home Page](screenshots/home.png)
 
